@@ -44,7 +44,7 @@ public class UI_Test {
 		frame.setBounds(100, 100, 531, 394);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.X_AXIS));
-		
+		// adding a comment
 	}
 
 }
