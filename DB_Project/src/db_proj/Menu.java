@@ -1,6 +1,5 @@
 package db_proj;
 
-import java.io.IOException;
 import java.sql.*;
 import java.util.Scanner;
 
@@ -48,10 +47,56 @@ public class Menu
    }
    
    public static void addPassenger(){
-		//Passenger p = new Passenger();
-	   System.out.print("First Name: ");
-	   input = sc.nextLine();
+		Passenger p = new Passenger();
+		
+		System.out.print("First Name: ");
+		p.firstName = sc.nextLine();
+		System.out.print("Last Name: ");
+		p.lastName = sc.nextLine();
+		System.out.print("Social Security Number: ");
+		p.ssn = sc.nextLine();
+		System.out.print("Age: ");
+		p.age = sc.nextLine();
+		System.out.print("Street: ");
+		p.street = sc.nextLine();
+		System.out.print("Apartment Number: ");
+		p.aptNum = sc.nextLine();
+		System.out.print("City: ");
+		p.city = sc.nextLine();
+		System.out.print("State: ");
+		p.state = sc.nextLine();
+		System.out.print("Zip-code: ");
+		p.zip = sc.nextLine();
+		System.out.print("Phone #: ");
+		p.telNum = sc.nextLine();
+		System.out.print("Email: ");
+		p.email = sc.nextLine();
+		System.out.print("Flight Number: ");
+		p.flightNum = sc.nextLine();
+		System.out.print("Flight Date: ");
+		p.flightDate = sc.nextLine();
+		System.out.print("Reservation Status: ");
+		p.reservationStat = sc.nextLine();
+		System.out.print("Baggage Info: ");
+		p.baggageInfo = sc.nextLine();
+		System.out.print("Seat Number: ");
+		p.seatNum = sc.nextLine();
+		System.out.print("Flight Class: ");
+		p.flightClass = sc.nextLine();
+		System.out.print("Amount Paid : ");
+		p.amountPaid = sc.nextLine();
+		System.out.println("\f");
+		   System.out.println("Summary");
+		   System.out.println("-----------------");
+		   System.out.println(p);
+		   System.out.println("1 - Save\n2 - Edit");
+		   input = sc.nextLine();
+		   if(input.equals("1"))
+				System.out.println("Saved");
+		   else if(input.equals("2"))
+				System.out.println("Edit");
 	   
+		
 	   
 	   
    }
@@ -285,10 +330,7 @@ public class Menu
 	   }
 	   while(!input.equals("0"));
 	   System.out.println("Program ended");
-	   
-
-	   
-	   	   
+	      	   
    }
 
 }
