@@ -12,7 +12,7 @@ public class Menu
    static Scanner sc = new Scanner(System.in);
    static String input;
    
-   public void execute(String sql){
+   public static void execute(String sql){
 	   
 	   
 	   Connection conn = null;
@@ -110,9 +110,50 @@ public class Menu
 	   
    }
    public static void updateFlight(){
+
+	   System.out.print("Flight Number: ");
+	   input = sc.nextLine();
 	   
-	   
-	   
+	   execute("update flight "
+	   		+ " set flightDate = " 
+			+ "aircraftType =  "
+	   		+ "source "
+	   		+ " "
+	   		+ " "
+	   		+ " "
+	   		+ " "
+	   		+ " "
+	   		+ " "
+	   		+ " "
+	   		+ " "
+	   		+ " "
+	   		+ " "
+	   		+ " "
+	   		+ " "
+	   		+ " "
+	   		+ " "
+	   		
+	   		+ " where flightNum = " + input);
+	 
+	   /*
+	   flightDate date not null,
+	   aircraftType varchar(50) not null,
+	   sourceCity varchar(50) not null,
+	   sourceState varchar(2) not null,
+	   destHour number (2,0) not null,
+	   destMin number (2,0) not null,
+	   destDate date not null,
+	   destCity varchar(50) not null,
+	   destState varchar(2) not null,
+	   arrivalHour number(2,0) not null,
+	   arrivalMin number(2,0) not null,
+	   arrivalDate date not null,
+	   arrivalCity varchar(50) not null,
+	   arrivalState varchar(2) not null,
+	   numSeatsBooked number(3,0) not null,
+	   numPassengersOnBoard number (3,0) not null,
+   
+   */
    }
    
 
