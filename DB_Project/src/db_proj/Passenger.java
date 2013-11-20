@@ -1,7 +1,7 @@
 package db_proj;
 
 public class Passenger {
-
+// random text
 	public String firstName;
 	public String lastName;
 	public String ssn;
