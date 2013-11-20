@@ -1,4 +1,4 @@
-package proj;
+package db_proj;
 
 public class Passenger {
 

@@ -1,24 +1,26 @@
 package db_proj;
 
+import java.sql.Date;
+
 public class Flight {
 	
-	String flightNum;
-	String flightDate;
+	int flightNum;
+	Date flightDate;
 	String aircraftType;
 	String sourceCity;
 	String sourceState;
-	String destHour;
-	String destMin;
-	String destDate;
+	int destHour;
+	int destMin;
+	Date destDate;
 	String destCity;
 	String destState;
-	String arrivalHour;
-	String arrivalMin;
-	String arrivalDate;
+	int arrivalHour;
+	int arrivalMin;
+	Date arrivalDate;
 	String arrivalCity;
 	String arrivalState;
-	String numSeatsBooked;
-	String numPassengersOnBoard;
+	int numSeatsBooked;
+	int numPassengersOnBoard;
 	
 	public Flight(){
 
