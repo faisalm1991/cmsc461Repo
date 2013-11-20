@@ -48,7 +48,6 @@ public class Menu
    
    public static void addPassenger(){
 		Passenger p = new Passenger();
-		
 		System.out.print("First Name: ");
 		p.firstName = sc.nextLine();
 		System.out.print("Last Name: ");
