@@ -53,9 +53,9 @@ public class Menu
 		System.out.print("Last Name: ");
 		p.lastName = sc.nextLine();
 		System.out.print("Social Security Number: ");
-		p.ssn = sc.nextLine();
+		p.ssn = sc.nextInt();
 		System.out.print("Age: ");
-		p.age = sc.nextLine();
+		p.age = sc.nextInt();
 		System.out.print("Street: ");
 		p.street = sc.nextLine();
 		System.out.print("Apartment Number: ");
@@ -65,15 +65,21 @@ public class Menu
 		System.out.print("State: ");
 		p.state = sc.nextLine();
 		System.out.print("Zip-code: ");
-		p.zip = sc.nextLine();
+		p.zip = sc.nextInt();
 		System.out.print("Phone #: ");
 		p.telNum = sc.nextLine();
 		System.out.print("Email: ");
 		p.email = sc.nextLine();
 		System.out.print("Flight Number: ");
 		p.flightNum = sc.nextLine();
-		System.out.print("Flight Date: ");
-		p.flightDate = sc.nextLine();
+		
+		System.out.print("Flight Date: (XX/XX/XXXX)");
+		input = sc.nextLine();
+		String[] date = input.split("/");
+		Date fDate = new Date(Integer.parseInt(date[0]), Integer.parseInt(date[1]), Integer.parseInt(date[2]));
+		p.flightDate = fDate;		   
+		//p.flightDate = sc.nextLine();
+		
 		System.out.print("Reservation Status: ");
 		p.reservationStat = sc.nextLine();
 		System.out.print("Baggage Info: ");
@@ -83,7 +89,7 @@ public class Menu
 		System.out.print("Flight Class: ");
 		p.flightClass = sc.nextLine();
 		System.out.print("Amount Paid : ");
-		p.amountPaid = sc.nextLine();
+		p.amountPaid = sc.nextDouble();
 		System.out.println("\f");
 		   System.out.println("Summary");
 		   System.out.println("-----------------");

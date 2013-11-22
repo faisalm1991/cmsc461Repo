@@ -1,26 +1,29 @@
 package db_proj;
 
+import java.sql.Date;
+
+
 public class Passenger {
 // random text
 	//testing random text
 	public String firstName;
 	public String lastName;
-	public String ssn;
-	public String age;
+	public int ssn;
+	public int age;
 	public String street;
 	public String aptNum;
 	public String city;
 	public String state;
-	public String zip;
+	public int zip;
 	public String telNum;
 	public String email;
 	public String flightNum;
-	public String flightDate;
+	public Date flightDate;
 	public String reservationStat;
 	public String baggageInfo;
 	public String seatNum;
 	public String flightClass;
-	public String amountPaid;
+	public double amountPaid;
 	
 	public Passenger(){
 		
