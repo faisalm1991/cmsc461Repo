@@ -32,24 +32,24 @@ public class Passenger {
 	
 	public String toString(){
 		String s = "";
-		s += "First Name:" + this.firstName + "\n";
-		s += "Last Name:" + this.lastName + "\n";
-		s += "First Name:" + this.ssn + "\n";
-		s += "Age: " + this.age + "\n";
-		s += "Street" + this.street + "\n";
-		s += "Apartment Number: " + this.aptNum + "\n";
-		s += "City: " + this.city + "\n";
-		s += "State: " + this.state + "\n";
-		s += "Zip: " + this.zip + "\n";
-		s += "Phone Number: " + this.telNum + "\n";
-		s += "Email: " + this.email + "\n";
-		s += "Flight Number: " + this.flightNum + "\n";
-		s += "Flight Date: " + this.flightDate + "\n";
-		s += "Reservation Status: " + this.reservationStat + "\n";
-		s += "Baggage Information: " + this.baggageInfo + "\n";
-		s += "Seat Number: " + this.seatNum + "\n";
-		s += "Flight Class" + this.flightClass + "\n";
-		s += "Amount Paid: " + this.amountPaid + "\n";
+		s += "First Name:               " + this.firstName + "\n";
+		s += "Last Name:                " + this.lastName + "\n";
+		s += "Social Security Number:   " + this.ssn + "\n";
+		s += "Age:                      " + this.age + "\n";
+		s += "Street:                   " + this.street + "\n";
+		s += "Apartment Number:         " + this.aptNum + "\n";
+		s += "City:                     " + this.city + "\n";
+		s += "State:                    " + this.state + "\n";
+		s += "Zip:                      " + this.zip + "\n";
+		s += "Phone Number:             " + this.telNum + "\n";
+		s += "Email:                    " + this.email + "\n";
+		s += "Flight Number:            " + this.flightNum + "\n";
+		s += "Flight Date:              " + this.flightDate + "\n";
+		s += "Reservation Status:       " + this.reservationStat + "\n";
+		s += "Baggage Information:      " + this.baggageInfo + "\n";
+		s += "Seat Number:              " + this.seatNum + "\n";
+		s += "Flight Class:             " + this.flightClass + "\n";
+		s += "Amount Paid:              " + this.amountPaid + "\n";
 		return s;
 		
 		

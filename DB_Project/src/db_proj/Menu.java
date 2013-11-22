@@ -5,44 +5,11 @@ import java.util.Scanner;
 
 public class Menu
 {
-   static final String JDBC_DRIVER = "oracle.jdbc.driver.OracleDrive";  
-   static final String DB_URL = "jdbc:oracle:thin:@oracle2.gl.umbc.edu:1521:GL";
-   static final String USER = "cgadwa1"; //Please add your User ID for your Oracle Account
-   static final String PASS = "babylips";  //Please add your Oracle Password
    static Scanner sc = new Scanner(System.in);
    static String input = "";
    
    public static void execute(String sql){
 	   
-	   
-	   Connection conn = null;
-	   Statement stmt = null;
-	   try
-	   {
-	      Class.forName("oracle.jdbc.driver.OracleDriver");
-	      System.out.println("Connecting to database...");
-	      conn = DriverManager.getConnection(DB_URL, USER, PASS);
-	      System.out.println("Executing...");
-	      stmt = conn.createStatement();
-	      stmt.executeUpdate(sql);
-	      System.out.println("Action done!");
-	   }catch(SQLException se){
-	      se.printStackTrace();
-	   }catch(Exception e){
-	     e.printStackTrace();
-	   }finally{
-	       try{
-	         if(stmt!=null)
-	            stmt.close();
-	      }catch(SQLException se2){
-	      }
-	      try{
-	         if(conn!=null)
-	            conn.close();
-	      }catch(SQLException se){
-	         se.printStackTrace();
-	      }
-	   }
 	   
    }
    
@@ -126,23 +93,23 @@ public class Menu
 	   f.sourceCity = sc.nextLine();
 	   System.out.print("Source State: ");
 	   f.sourceState = sc.nextLine();
-	   System.out.print("Destination Hour: ");
-	   f.destHour = Integer.parseInt(sc.nextLine());
-	   System.out.print("Destination Minute: ");
-	   f.destMin = Integer.parseInt(sc.nextLine());
-	   System.out.print("Destination Date (XX/XX/XXXX) : ");
+	   System.out.print("depination Hour: ");
+	   f.depHour = Integer.parseInt(sc.nextLine());
+	   System.out.print("depination Minute: ");
+	   f.depMin = Integer.parseInt(sc.nextLine());
+	   System.out.print("depination Date (XX/XX/XXXX) : ");
 	    
 	   input = sc.nextLine();
 	   String[] ddate = input.split("/");
 	   
 	   Date dDate = new Date(Integer.parseInt(date[0]), Integer.parseInt(date[1]), Integer.parseInt(date[2]));
-	   f.destDate = dDate;
+	   f.depDate = dDate;
 	   
 	   
-	   System.out.print("Destination City: ");
-	   f.destCity = sc.nextLine();
-	   System.out.print("Destination State: ");
-	   f.destState = sc.nextLine();
+	   System.out.print("depination City: ");
+	   f.depCity = sc.nextLine();
+	   System.out.print("depination State: ");
+	   f.depState = sc.nextLine();
 	   System.out.print("Arrival Hour: ");
 	   f.arrivalHour = Integer.parseInt(sc.nextLine());
 	   System.out.print("Arrival Minute: ");
@@ -200,11 +167,11 @@ public class Menu
 		f.aircraftType = rs.getString("aircraftType");
 		f.sourceCity =rs.getString("sourceCity");
 		f.sourceState = rs.getString("sourceState");
-		f.destHour =rs.getInt("destHour");
-		f.destMin = rs.getInt("destMin");
-		f.destDate = rs.getDate("destDate");
-		f.destCity = rs.getString("destCity");
-		f.destState =rs.getString("destState");
+		f.depHour =rs.getInt("depHour");
+		f.depMin = rs.getInt("depMin");
+		f.depDate = rs.getDate("depDate");
+		f.depCity = rs.getString("depCity");
+		f.depState =rs.getString("depState");
 		f.arrivalHour = rs.getInt("arrivalHour");
 		f.arrivalMin =rs.getInt("arrivalMin");
 		f.arrivalDate = rs.getDate("arrivalDate");
@@ -233,10 +200,10 @@ public class Menu
 				+ ", aircraftType = ?"
 				+ ", sourceCity = ?"
 				+ ", sourceState = ?"
-				+ ", destHour = ?"
-				+ ", destMin = ?"
-				+ ", destDate = ?"
-				+ ", destState = ?"
+				+ ", depHour = ?"
+				+ ", depMin = ?"
+				+ ", depDate = ?"
+				+ ", depState = ?"
 				+ ", arrivalHour = ?"
 				+ ", arrivalMin = ?"
 				+ ", arrivalDate = ?"
@@ -256,11 +223,11 @@ public class Menu
 			preparedStatement.setString(3, f.aircraftType);
 			preparedStatement.setString(4, f.sourceCity);
 			preparedStatement.setString(5, f.sourceState);
-			preparedStatement.setInt(6, f.destHour);
-			preparedStatement.setInt(7, f.destMin);
-			preparedStatement.setDate(8, f.destDate);
-			preparedStatement.setString(9, f.destCity);
-			preparedStatement.setString(10, f.destState);
+			preparedStatement.setInt(6, f.depHour);
+			preparedStatement.setInt(7, f.depMin);
+			preparedStatement.setDate(8, f.depDate);
+			preparedStatement.setString(9, f.depCity);
+			preparedStatement.setString(10, f.depState);
 			preparedStatement.setInt(11, f.arrivalHour);
 			preparedStatement.setInt(12, f.arrivalMin);
 			preparedStatement.setDate(13, f.arrivalDate);
