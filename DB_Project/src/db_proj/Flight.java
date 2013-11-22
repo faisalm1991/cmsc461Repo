@@ -2,10 +2,7 @@ package db_proj;
 
 import java.sql.Date;
 
-/*
- * select flightNum from flight;
- * 
- */
+
 public class Flight {
 	
 	int flightNum;
