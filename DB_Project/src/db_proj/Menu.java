@@ -52,7 +52,7 @@ public class Menu
 		p.firstName = sc.nextLine();
 		System.out.print("Last Name: ");
 		p.lastName = sc.nextLine();
-		System.out.print("Social Security Number: ");
+		System.out.print("Social Security Number: ### only");
 		p.ssn = sc.nextInt();
 		System.out.print("Age: ");
 		p.age = sc.nextInt();
@@ -72,7 +72,6 @@ public class Menu
 		p.email = sc.nextLine();
 		System.out.print("Flight Number: ");
 		p.flightNum = sc.nextLine();
-		
 		System.out.print("Flight Date: (XX/XX/XXXX)");
 		input = sc.nextLine();
 		String[] date = input.split("/");
