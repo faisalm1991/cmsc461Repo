@@ -53,9 +53,9 @@ public class Menu
 		System.out.print("Last Name: ");
 		p.lastName = sc.nextLine();
 		System.out.print("Social Security Number: ### only");
-		p.ssn = sc.nextInt();
+		p.ssn = Integer.parseInt(sc.nextLine());
 		System.out.print("Age: ");
-		p.age = sc.nextInt();
+		p.age = Integer.parseInt(sc.nextLine());
 		System.out.print("Street: ");
 		p.street = sc.nextLine();
 		System.out.print("Apartment Number: ");
@@ -65,7 +65,7 @@ public class Menu
 		System.out.print("State: ");
 		p.state = sc.nextLine();
 		System.out.print("Zip-code: ");
-		p.zip = sc.nextInt();
+		p.zip = Integer.parseInt(sc.nextLine());
 		System.out.print("Phone #: ");
 		p.telNum = sc.nextLine();
 		System.out.print("Email: ");
@@ -113,7 +113,7 @@ public class Menu
    public static void addFlight(){
 	   Flight f = new Flight();
 	   System.out.print("Flight Number: ");
-	   f.flightNum = sc.nextInt();
+	   f.flightNum = Integer.parseInt(sc.nextLine());
 	   System.out.print("Flight date (XX/XX/XXXX): ");
 	   input = sc.nextLine();
 	   String[] date = input.split("/");
@@ -127,9 +127,9 @@ public class Menu
 	   System.out.print("Source State: ");
 	   f.sourceState = sc.nextLine();
 	   System.out.print("Destination Hour: ");
-	   f.destHour = sc.nextInt();
+	   f.destHour = Integer.parseInt(sc.nextLine());
 	   System.out.print("Destination Minute: ");
-	   f.destMin = sc.nextInt();
+	   f.destMin = Integer.parseInt(sc.nextLine());
 	   System.out.print("Destination Date (XX/XX/XXXX) : ");
 	    
 	   input = sc.nextLine();
@@ -144,9 +144,9 @@ public class Menu
 	   System.out.print("Destination State: ");
 	   f.destState = sc.nextLine();
 	   System.out.print("Arrival Hour: ");
-	   f.arrivalHour = sc.nextInt();
+	   f.arrivalHour = Integer.parseInt(sc.nextLine());
 	   System.out.print("Arrival Minute: ");
-	   f.arrivalMin = sc.nextInt();
+	   f.arrivalMin = Integer.parseInt(sc.nextLine());
 	   System.out.print("Arrival Date: ");
 	   
 	   input = sc.nextLine();
@@ -161,9 +161,9 @@ public class Menu
 	   System.out.print("Arrival State: ");
 	   f.arrivalState = sc.nextLine();
 	   System.out.print("Number of Seats Booked: ");
-	   f.numSeatsBooked = sc.nextInt();
+	   f.numSeatsBooked = Integer.parseInt(sc.nextLine());
 	   System.out.print("Passengers on Board: ");
-	   f.numPassengersOnBoard = sc.nextInt();
+	   f.numPassengersOnBoard = Integer.parseInt(sc.nextLine());
 	   System.out.println("\f");
 	   System.out.println("Summary");
 	   System.out.println("-----------------");
@@ -184,7 +184,7 @@ public class Menu
 	   //ask flight number 
 	   
 	   System.out.print("Flight Number: ");
-	   f.flightNum = sc.nextInt();
+	   f.flightNum = Integer.parseInt(sc.nextLine());
 	   
 	   //using the flight number, gather info about flight and store in flight object f
 	   Connection dbConnection = null;
