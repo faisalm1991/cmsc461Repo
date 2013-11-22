@@ -10,7 +10,7 @@ public class Menu
    static final String USER = "cgadwa1"; //Please add your User ID for your Oracle Account
    static final String PASS = "babylips";  //Please add your Oracle Password
    static Scanner sc = new Scanner(System.in);
-   static String input;
+   static String input = "";
    
    public static void execute(String sql){
 	   
@@ -111,13 +111,12 @@ public class Menu
    }
       
    public static void addFlight(){
-		Flight f = new Flight();
+	   Flight f = new Flight();
 	   System.out.print("Flight Number: ");
 	   f.flightNum = sc.nextInt();
 	   System.out.print("Flight date (XX/XX/XXXX): ");
 	   input = sc.nextLine();
 	   String[] date = input.split("/");
-	   
 	   Date fDate = new Date(Integer.parseInt(date[0]), Integer.parseInt(date[1]), Integer.parseInt(date[2]));
 	   f.flightDate = fDate;
 	   
