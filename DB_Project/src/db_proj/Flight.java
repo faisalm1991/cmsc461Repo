@@ -10,11 +10,11 @@ public class Flight {
 	String aircraftType;
 	String sourceCity;
 	String sourceState;
-	int destHour;
-	int destMin;
-	Date destDate;
-	String destCity;
-	String destState;
+	int depHour;
+	int depMin;
+	Date depDate;
+	String depCity;
+	String depState;
 	int arrivalHour;
 	int arrivalMin;
 	Date arrivalDate;
@@ -30,23 +30,23 @@ public class Flight {
 	
 	public String toString(){
 		
-		return  this.flightNum
-		+ "\n" +this.flightDate
-		+ "\n" +this.aircraftType
-		+ "\n" +this.sourceCity
-		+ "\n" +this.sourceState
-		+ "\n" +this.destHour
-		+ "\n" +this.destMin
-		+ "\n" +this.destDate
-		+ "\n" +this.destCity
-		+ "\n" +this.destState
-		+ "\n" +this.arrivalHour
-		+ "\n" +this.arrivalMin
-		+ "\n" +this.arrivalDate
-		+ "\n" +this.arrivalCity
-		+ "\n" +this.arrivalState
-		+ "\n" +this.numSeatsBooked
-		+ "\n" +this.numPassengersOnBoard;
+		return 	 "Flight Number:       " + this.flightNum
+		+ "\n" + "Flight Date:         " + this.flightDate
+		+ "\n" + "Aircraft Type:       " + this.aircraftType
+		+ "\n" + "Source City:         " + this.sourceCity
+		+ "\n" + "Source State:        " + this.sourceState
+		+ "\n" + "Departure Hour:      " + this.depHour
+		+ "\n" + "Departure Minute:    " + this.depMin
+		+ "\n" + "Departure Date:      " + this.depDate
+		+ "\n" + "Departure City:      " + this.depCity
+		+ "\n" + "Departure State:     " + this.depState
+		+ "\n" + "Arrival Hour:        " + this.arrivalHour
+		+ "\n" + "Arrival Min:         " + this.arrivalMin
+		+ "\n" + "Arrival Date:        " + this.arrivalDate
+		+ "\n" + "Arrival City:        " + this.arrivalCity
+		+ "\n" + "Arrival State:       " + this.arrivalState
+		+ "\n" + "Seats Booked:        " + this.numSeatsBooked
+		+ "\n" + "Passengers On Board: " + this.numPassengersOnBoard;
 	}
 
 	public static void main(String[] args) {
