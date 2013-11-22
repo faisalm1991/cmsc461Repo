@@ -5,15 +5,15 @@ import java.util.Scanner;
 
 public class Menu
 {
-   static Scanner sc = new Scanner(System.in);
-   static String input = "";
-   
-   public static void execute(String sql){
-	   
-	   
-   }
-   
-   public static void addPassenger(){
+	static Scanner sc = new Scanner(System.in);
+	static String input = "";
+
+	public static void execute(String sql){
+
+
+	}
+
+	public static void addPassenger(){
 		Passenger p = new Passenger();
 		System.out.print("First Name: ");
 		p.firstName = sc.nextLine();
@@ -45,7 +45,7 @@ public class Menu
 		Date fDate = new Date(Integer.parseInt(date[0]), Integer.parseInt(date[1]), Integer.parseInt(date[2]));
 		p.flightDate = fDate;		   
 		//p.flightDate = sc.nextLine();
-		
+
 		System.out.print("Reservation Status: ");
 		p.reservationStat = sc.nextLine();
 		System.out.print("Baggage Info: ");
@@ -57,102 +57,131 @@ public class Menu
 		System.out.print("Amount Paid : ");
 		p.amountPaid = sc.nextDouble();
 		System.out.println("\f");
-		   System.out.println("Summary");
-		   System.out.println("-----------------");
-		   System.out.println(p);
-		   System.out.println("1 - Save\n2 - Edit");
-		   input = sc.nextLine();
-		   if(input.equals("1"))
-				System.out.println("Saved");
-		   else if(input.equals("2"))
-				System.out.println("Edit");
-	   
-		
-	   
-	   
-   }
-   
-   public static void updatePassenger(){
-	   
-	   
-   }
-      
-   public static void addFlight(){
-	   Flight f = new Flight();
-	   System.out.print("Flight Number: ");
-	   f.flightNum = Integer.parseInt(sc.nextLine());
-	   System.out.print("Flight date (XX/XX/XXXX): ");
-	   input = sc.nextLine();
-	   String[] date = input.split("/");
-	   Date fDate = new Date(Integer.parseInt(date[0]), Integer.parseInt(date[1]), Integer.parseInt(date[2]));
-	   f.flightDate = fDate;
-	   
-	   System.out.print("Aircraft Type: ");
-	   f.aircraftType = sc.nextLine();
-	   System.out.print("Source City: ");
-	   f.sourceCity = sc.nextLine();
-	   System.out.print("Source State: ");
-	   f.sourceState = sc.nextLine();
-	   System.out.print("depination Hour: ");
-	   f.depHour = Integer.parseInt(sc.nextLine());
-	   System.out.print("depination Minute: ");
-	   f.depMin = Integer.parseInt(sc.nextLine());
-	   System.out.print("depination Date (XX/XX/XXXX) : ");
-	    
-	   input = sc.nextLine();
-	   String[] ddate = input.split("/");
-	   
-	   Date dDate = new Date(Integer.parseInt(date[0]), Integer.parseInt(date[1]), Integer.parseInt(date[2]));
-	   f.depDate = dDate;
-	   
-	   
-	   System.out.print("depination City: ");
-	   f.depCity = sc.nextLine();
-	   System.out.print("depination State: ");
-	   f.depState = sc.nextLine();
-	   System.out.print("Arrival Hour: ");
-	   f.arrivalHour = Integer.parseInt(sc.nextLine());
-	   System.out.print("Arrival Minute: ");
-	   f.arrivalMin = Integer.parseInt(sc.nextLine());
-	   System.out.print("Arrival Date: ");
-	   
-	   input = sc.nextLine();
-	   String[] adate = input.split("/");
-	   
-	   Date aDate = new Date(Integer.parseInt(date[0]), Integer.parseInt(date[1]), Integer.parseInt(date[2]));
-	   f.arrivalDate = aDate;
-	   
-	   
-	   System.out.print("Arrival City: ");
-	   f.arrivalCity = sc.nextLine();
-	   System.out.print("Arrival State: ");
-	   f.arrivalState = sc.nextLine();
-	   System.out.print("Number of Seats Booked: ");
-	   f.numSeatsBooked = Integer.parseInt(sc.nextLine());
-	   System.out.print("Passengers on Board: ");
-	   f.numPassengersOnBoard = Integer.parseInt(sc.nextLine());
-	   System.out.println("\f");
-	   System.out.println("Summary");
-	   System.out.println("-----------------");
-	   System.out.println(f);
-	   System.out.println("1 - Save\n2 - Edit");
-	   input = sc.nextLine();
-	   if(input.equals("1"))
+		System.out.println("Summary");
+		System.out.println("-----------------");
+		System.out.println(p);
+		System.out.println("1 - Save\n2 - Edit");
+		input = sc.nextLine();
+		if(input.equals("1"))
 			System.out.println("Saved");
-	   else if(input.equals("2"))
+		else if(input.equals("2"))
 			System.out.println("Edit");
-	   
-	   
-   }
+
+
+
+
+	}
+
+	public static void updatePassenger(){
+		do{
+			System.out.print("\n\f");
+			System.out.println("Please select the way you want to select the passenger");
+			System.out.println("1 - Search for specific passenger's SSN.");
+			System.out.println("2 - Display list of all passengers' first/last name and SSN's.");
+			System.out.println("0 - Go back to main menu.");
+			input = sc.nextLine();
+
+			if(input.equals("1")){
+				/*	Need to write code to search given the SSN given SqlCommands info
+			   	 *
+				 */
+				System.out.println("You picked 1");
+			}
+			else if(input.equals("2")){
+				/*	Need to access SqlCommands.java function that will find all first/last names and ssn's
+				 * 	Then display them
+				 * 	Then have the user input the one they want to select from the list
+				 * 	
+				 * 
+				 */
+				System.out.println("You picked 2");
+			}
+		}
+		while(!input.equals("0"));
+		System.out.println("Back to main menu");
+
+	}
+
+	public static void addFlight(){
+		Flight f = new Flight();
+		System.out.print("Flight Number: ");
+		f.flightNum = Integer.parseInt(sc.nextLine());
+		System.out.print("Flight date (XX/XX/XXXX): ");
+		input = sc.nextLine();
+		String[] date = input.split("/");
+		Date fDate = new Date(Integer.parseInt(date[0]), Integer.parseInt(date[1]), Integer.parseInt(date[2]));
+		f.flightDate = fDate;
+
+		System.out.print("Aircraft Type: ");
+		f.aircraftType = sc.nextLine();
+		System.out.print("Source City: ");
+		f.sourceCity = sc.nextLine();
+		System.out.print("Source State: ");
+		f.sourceState = sc.nextLine();
+		System.out.print("depination Hour: ");
+		f.depHour = Integer.parseInt(sc.nextLine());
+		System.out.print("depination Minute: ");
+		f.depMin = Integer.parseInt(sc.nextLine());
+		System.out.print("depination Date (XX/XX/XXXX) : ");
+
+		input = sc.nextLine();
+		String[] ddate = input.split("/");
+
+		Date dDate = new Date(Integer.parseInt(date[0]), Integer.parseInt(date[1]), Integer.parseInt(date[2]));
+		f.depDate = dDate;
+
+
+		System.out.print("depination City: ");
+		f.depCity = sc.nextLine();
+		System.out.print("depination State: ");
+		f.depState = sc.nextLine();
+		System.out.print("Arrival Hour: ");
+		f.arrivalHour = Integer.parseInt(sc.nextLine());
+		System.out.print("Arrival Minute: ");
+		f.arrivalMin = Integer.parseInt(sc.nextLine());
+		System.out.print("Arrival Date: ");
+
+		input = sc.nextLine();
+		String[] adate = input.split("/");
+
+		Date aDate = new Date(Integer.parseInt(date[0]), Integer.parseInt(date[1]), Integer.parseInt(date[2]));
+		f.arrivalDate = aDate;
+
+
+		System.out.print("Arrival City: ");
+		f.arrivalCity = sc.nextLine();
+		System.out.print("Arrival State: ");
+		f.arrivalState = sc.nextLine();
+		System.out.print("Number of Seats Booked: ");
+		f.numSeatsBooked = Integer.parseInt(sc.nextLine());
+		System.out.print("Passengers on Board: ");
+		f.numPassengersOnBoard = Integer.parseInt(sc.nextLine());
+		System.out.println("\f");
+		System.out.println("Summary");
+		System.out.println("-----------------");
+		System.out.println(f);
+		System.out.println("1 - Save\n2 - Edit");
+		input = sc.nextLine();
+		if(input.equals("1"))
+			System.out.println("Saved");
+		else if(input.equals("2"))
+			System.out.println("Edit");
+
+
+	}
+
+	/*
+	 * Commenting out because Faze says sql stuff is moving to SqlCommands.java
+	 * 
    public static void updateFlight(){
-	   
+
 	   Flight f = new Flight();
-	   
+
 	   //ask flight number 
-	   
+
 	   System.out.print("Flight Number: ");
 	   f.flightNum = Integer.parseInt(sc.nextLine());
-	   
+
 	   //using the flight number, gather info about flight and store in flight object f
 	   Connection dbConnection = null;
 	   Statement stmt = null;
@@ -161,7 +190,7 @@ public class Menu
 		stmt = dbConnection.createStatement();
 		String sql = "SELECT * from flight where flightNum = " + f.flightNum;
 		ResultSet rs = stmt.executeQuery(sql);
-		
+
 		f.flightNum = rs.getInt("flightNum");
 		f.flightDate = rs.getDate("flightDate");
 		f.aircraftType = rs.getString("aircraftType");
@@ -179,19 +208,19 @@ public class Menu
 		f.arrivalState = rs.getString("arrivalState");
 		f.numSeatsBooked = rs.getInt("numSeatsBooked");
 		f.numPassengersOnBoard = rs.getInt("numPassengersOnBoard");
-		
-		
+
+
 	} catch (SQLException e1) {
 		// TODO Auto-generated catch block
 		e1.printStackTrace();
 	}
-	   
-	   
+
+
 	   //ask user what they want to update and store values in flight object f
-	   
-	   
+
+
 	   //update info for flight in SQL database
-	   	
+
 		PreparedStatement preparedStatement = null;
 
 		String updateTableSQL = "UPDATE flight "
@@ -213,9 +242,9 @@ public class Menu
 				+ ", numPassengersOnBoard = ?"
                 + " WHERE USER_ID = ?";
 
-		
+
 		try {
-			
+
 			preparedStatement = dbConnection.prepareStatement(updateTableSQL);
 
 			preparedStatement.setInt(1, f.flightNum);
@@ -235,8 +264,8 @@ public class Menu
 			preparedStatement.setString(15, f.arrivalState);
 			preparedStatement.setInt(16, f.numSeatsBooked);
 			preparedStatement.setInt(17, f.numPassengersOnBoard);
-			
-			
+
+
 			// execute insert SQL stetement
 			preparedStatement.executeUpdate();
 
@@ -267,41 +296,73 @@ public class Menu
 			}
 
 		}
-	   
 
-   }
-   
 
-   
-   
-   
-   
-   public static void main(String[] args){
-	   
-	   
-	   do{
-		   System.out.println("\f");
-		   System.out.println("Welcome to Flight Manager Beta");
-		   System.out.println("1 - Add a new passenger.");
-		   System.out.println("2 - Edit existing passenger information.");
-		   System.out.println("3 - Add a new flight.");
-		   System.out.println("4 - Edit existing flight information.");
-		   System.out.println("0 - Exit.");
-		   input = sc.nextLine();
-		   
-		   if(input.equals("1"))
-			   	addPassenger();
-		   else if(input.equals("2"))
+   }*/
+
+	public static void updateFlight(){
+
+
+		do{
+			System.out.print("\n\f");
+			System.out.println("Please select the way you want to select your flight number");
+			System.out.println("1 - Search for specific flight number.");
+			System.out.println("2 - Display list of all flight numbers.");
+			System.out.println("0 - Go back to main menu.");
+			input = sc.nextLine();
+
+			if(input.equals("1")){
+				/*	Need to write code to search given the number
+			   System.out.println("Enter Flight Number of the flight you wish to edit: ");
+			   int toEditFlightNum = Integer.parseInt(sc.nextLine());
+				 */
+				System.out.println("You picked 1");
+			}
+			else if(input.equals("2")){
+				/*	Need to access SqlCommands.java function that will find all flight numbers
+				 * 	Then display them
+				 * 	Then have the user input the one they want to select from the list
+				 * 	
+				 * 
+				 */
+				System.out.println("You picked 2");
+			}
+		}
+		while(!input.equals("0"));
+		System.out.println("Back to main menu");
+
+	}
+
+
+
+
+
+	public static void main(String[] args){
+
+
+		do{
+			System.out.println("\f");
+			System.out.println("Welcome to Flight Manager Beta");
+			System.out.println("1 - Add a new passenger.");
+			System.out.println("2 - Edit existing passenger information.");
+			System.out.println("3 - Add a new flight.");
+			System.out.println("4 - Edit existing flight information.");
+			System.out.println("0 - Exit.");
+			input = sc.nextLine();
+
+			if(input.equals("1"))
+				addPassenger();
+			else if(input.equals("2"))
 				updatePassenger();
-		   else if(input.equals("3"))
-			   	addFlight();
-		   else if(input.equals("4"))
-			   	updateFlight();
-	   }
-	   while(!input.equals("0"));
-	   System.out.println("Program ended.");
-	      	   
-   }
+			else if(input.equals("3"))
+				addFlight();
+			else if(input.equals("4"))
+				updateFlight();
+		}
+		while(!input.equals("0"));
+		System.out.println("Program ended.");
+
+	}
 
 }
 
