@@ -332,7 +332,7 @@ public class Menu
 			   	updateFlight();
 	   }
 	   while(!input.equals("0"));
-	   System.out.println("Program ended");
+	   System.out.println("Program ended.");
 	      	   
    }
 
