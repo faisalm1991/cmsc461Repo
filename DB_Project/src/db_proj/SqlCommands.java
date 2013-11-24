@@ -1,4 +1,4 @@
-package db_proj;
+//package db_proj;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -313,10 +313,10 @@ public class SqlCommands {
 		PreparedStatement preparedStatement = null;
 		
 		String insertTableSQL = "UPDATE PASSENGER"
-					+ "SET firstName = ?, lastName = ?, ssn = ?, age = ?, street = ?, aptNum = ?, city = ?, "
+					+ " SET firstName = ?, lastName = ?, ssn = ?, age = ?, street = ?, aptNum = ?, city = ?, "
 					+ "state = ?, zip = ?, telNum = ?,  email = ?, flightNum = ?, flightDate = ?, "
 					+ "reservationStat = ?, baggageInfo = ?, seatNum = ?, flightClass = ?, amountPaid = ?"
-					+ "WHERE ssn = " + "'" + sNum + "'";
+					+ " WHERE ssn = " + "'" + sNum + "'";
 	
 			
 			try {

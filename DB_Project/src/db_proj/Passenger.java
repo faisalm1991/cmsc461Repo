@@ -1,4 +1,4 @@
-package db_proj;
+//package db_proj;
 
 import java.sql.Date;
 
@@ -9,7 +9,7 @@ public class Passenger {
 	//Faisal haha
 	public String firstName;
 	public String lastName;
-	public int ssn;
+	public int ssn =0;
 	public int age;
 	public String street;
 	public String aptNum;
@@ -27,7 +27,7 @@ public class Passenger {
 	public double amountPaid;
 	
 	public Passenger(){
-		
+	
 	}
 	
 	public String toString(){

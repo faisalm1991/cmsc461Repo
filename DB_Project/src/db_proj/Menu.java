@@ -1,4 +1,4 @@
-package db_proj;
+//package db_proj;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -73,12 +73,115 @@ public class Menu
 
 	}
 
+	public static void passengerMenu(Passenger p, int ssn){
+
+		System.out.println("Please select what you would like to edit");
+		System.out.println("1 - First Name");
+		System.out.println("2 - Last Name ");
+		System.out.println("3 - SSN ");
+		System.out.println("4 - Age");
+		System.out.println("5 - Street ");
+		System.out.println("6 - Apartment Number ");
+		System.out.println("7 - City");
+		System.out.println("8 - State ");
+		System.out.println("9 - Zip ");
+		System.out.println("10 - Telephone Number");
+		System.out.println("11 - Email ");
+		System.out.println("12 - Flight Number");
+		System.out.println("13 - Flight Date");
+		System.out.println("14 - Reservation Status ");
+		System.out.println("15 - Baggage Info ");
+		System.out.println("16 - Seat Number");
+		System.out.println("17 - Flight Class");
+		System.out.println("18 - Amount Paid");
+		String choice = sc.nextLine();
+		
+		System.out.println("Enter in what you would like to change about choice " + choice);
+		String change = sc.nextLine();
+
+		if(choice.equals("1")){
+			p.firstName = change;
+		}
+		else if(choice.equals("2")){
+			p.lastName = change;
+		}
+		else if(choice.equals("3")){
+			p.ssn = Integer.parseInt(change);
+		}
+		else if(choice.equals("4")){
+			p.age = Integer.parseInt(change);
+		}
+		else if(choice.equals("5")){
+			p.street = change;
+		}
+		else if(choice.equals("6")){
+			p.aptNum = change;
+		}
+		else if(choice.equals("7")){
+			p.city = change;
+		}
+		else if(choice.equals("8")){
+			p.state = change;
+			
+		}
+		else if(choice.equals("9")){
+			p.zip = Integer.parseInt(change);
+				
+		}
+		else if(choice.equals("10")){
+			p.telNum = change;
+		}
+		else if(choice.equals("11")){
+			p.email = change;
+		}
+		else if(choice.equals("12")){
+			p.flightNum  = change;
+		}
+		else if(choice.equals("13")){
+			
+			String[] date = input.split("/");
+			Date fDate = new Date(Integer.parseInt(date[0]), Integer.parseInt(date[1]), Integer.parseInt(date[2]));
+			p.flightDate = fDate;		   
+			
+		}
+		else if(choice.equals("14")){
+
+			p.reservationStat = change;
+			
+		}
+		else if(choice.equals("15")){
+
+			p.baggageInfo = change;											
+		}
+		else if(choice.equals("16")){
+			p.seatNum = change;
+		}
+		else if(choice.equals("17")){
+			p.flightClass = change;
+		}
+		else if(choice.equals("18")){
+			p.amountPaid = Integer.parseInt(change);
+				
+		}
+		try 
+		{
+			SqlCommands.updatePassenger(p, ssn);
+		}
+		catch(Exception e){
+			System.out.println(e);
+		}
+		System.out.println(SqlCommands.getPassenger(ssn));
+	}
+	
 	public static void updatePassenger(){
+		
 		do{
-			System.out.print("\n\f");
+			
+			
+			//System.out.print("\n\f");
 			System.out.println("Please select the way you want to select the passenger");
 			System.out.println("1 - Search for specific passenger's SSN.");
-			System.out.println("2 - Display list of all passengers' first/last name and SSN's.");
+			System.out.println("2 - Display list of all passengers' first/last name and SSN's from a flight number");
 			System.out.println("0 - Go back to main menu.");
 			input = sc.nextLine();
 
@@ -87,14 +190,25 @@ public class Menu
 			   	 *
 				 */			
 				
+				
 				System.out.println("You picked 1");
 				
 				// Request SSN
-				System.out.print("Enter Social Security Number: ### only");
+				System.out.print("Enter Social Security Number: ### only \n");
 				int ssnIn = Integer.parseInt(sc.nextLine());
 				
 				//Search for SSN in Table
-
+				Passenger p = SqlCommands.getPassenger(ssnIn);
+				
+				if (p.ssn == 0){
+					System.out.println("Could not find passenger");
+					
+				}else{
+					System.out.println("\fYou've selected the following passenger: ");
+					System.out.println(p);
+					
+				}
+				passengerMenu(p, ssnIn);
 				
 			}
 			else if(input.equals("2")){
@@ -105,6 +219,15 @@ public class Menu
 				 * 
 				 */
 				System.out.println("You picked 2");
+				
+				System.out.print("Enter in flight number: ### only");
+				int fNum = Integer.parseInt(sc.nextLine());
+			
+				ArrayList<String> list = SqlCommands.getListOfPassengers(fNum);
+				for(String s : list){
+					System.out.println(s);
+				}
+				input= "1";
 			}
 		}
 		while(!input.equals("0"));
@@ -349,7 +472,8 @@ public class Menu
 
 	public static void main(String[] args){
 
-
+		updatePassenger();
+/*
 		do{
 			System.out.println("\f");
 			System.out.println("Welcome to Flight Manager Beta");
@@ -371,7 +495,7 @@ public class Menu
 		}
 		while(!input.equals("0"));
 		System.out.println("Program ended.");
-
+*/
 	}
 
 }
