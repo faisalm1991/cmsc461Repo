@@ -116,7 +116,7 @@ public class Menu
 		Flight f = new Flight();
 		System.out.print("Flight Number: ");
 		f.flightNum = Integer.parseInt(sc.nextLine());
-		System.out.print("Flight date (XX/XX/XXXX): ");
+		System.out.print("Flight date (XX/XX/XXXX)(year,mon,day): ");
 		input = sc.nextLine();
 		String[] date = input.split("/");
 		Date fDate = new Date(Integer.parseInt(date[0]), Integer.parseInt(date[1]), Integer.parseInt(date[2]));
@@ -128,11 +128,11 @@ public class Menu
 		f.sourceCity = sc.nextLine();
 		System.out.print("Source State: ");
 		f.sourceState = sc.nextLine();
-		System.out.print("depination Hour: ");
+		System.out.print("departure Hour: ");
 		f.depHour = Integer.parseInt(sc.nextLine());
-		System.out.print("depination Minute: ");
+		System.out.print("departure Minute: ");
 		f.depMin = Integer.parseInt(sc.nextLine());
-		System.out.print("depination Date (XX/XX/XXXX) : ");
+		System.out.print("departure Date (XX/XX/XXXX) : ");
 
 		input = sc.nextLine();
 		String[] ddate = input.split("/");
