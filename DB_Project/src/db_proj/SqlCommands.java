@@ -313,10 +313,10 @@ public class SqlCommands {
 		PreparedStatement preparedStatement = null;
 		
 		String insertTableSQL = "UPDATE PASSENGER"
-					+ "SET firstName = ?, lastName = ?, ssn = ?, age = ?, street = ?, aptNum = ?, city = ?, "
+					+ " SET firstName = ?, lastName = ?, ssn = ?, age = ?, street = ?, aptNum = ?, city = ?, "
 					+ "state = ?, zip = ?, telNum = ?,  email = ?, flightNum = ?, flightDate = ?, "
 					+ "reservationStat = ?, baggageInfo = ?, seatNum = ?, flightClass = ?, amountPaid = ?"
-					+ "WHERE ssn = " + "'" + sNum + "'";
+					+ " WHERE ssn = " + "'" + sNum + "'";
 	
 			
 			try {
@@ -513,7 +513,7 @@ public class SqlCommands {
 	
 		p.zip = 20743;
 		
-		p.telNum = "2404604365";
+		p.telNum = "3014124031";
 	
 		p.email = "hegray1@umbc.edu";
 	
@@ -532,14 +532,15 @@ public class SqlCommands {
 		p.flightClass = "Economy";
 	
 		p.amountPaid = 5000.00;
-		/*
+		
 		try {
-			addPassenger(p);
+			updatePassenger(p, 123454444);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		*/
+	
+		
 		
 	}
 
