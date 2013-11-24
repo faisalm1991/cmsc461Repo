@@ -170,6 +170,66 @@ public class SqlCommands {
 		return p;
 	}
 	
+	
+	public static Flight getFlight(int flightNum){
+		Flight f = new Flight();
+		Connection conn = null;
+		Statement stmt = null;
+		try
+		{
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			System.out.println("Connecting to database...");
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+			System.out.println("Executing...");
+			stmt = conn.createStatement();
+			String sql = "select flightNum, flightDate, aircraftType, sourceCity, sourceState, depHour, "
+					+ "depMin, depDate, depCity, depState, arrivalHour, arrivalMin, arrivalDate, "
+					+ "arrivalCity, arrivalState, numSeatsBooked, numPassengersOnBoard "
+					+ "from flight where flightNum = "+"'"+flightNum+"'";
+
+			ResultSet dbUsers = stmt.executeQuery(sql);
+
+			while(dbUsers.next()){
+				f.flightNum = dbUsers.getInt("flightNum");
+				f.flightDate = dbUsers.getDate("flightDate");
+				f.aircraftType = dbUsers.getString("aircraftType");
+				f.sourceCity = dbUsers.getString("sourceCity");
+				f.sourceState = dbUsers.getString("sourceState");
+				f.depHour = dbUsers.getInt("depHour");
+				f.depMin = dbUsers.getInt("depMin");
+				f.depDate = dbUsers.getDate("depDate");
+				f.depCity = dbUsers.getString("depCity");
+				f.depState = dbUsers.getString("depState");
+				f.arrivalHour = dbUsers.getInt("arrivalHour");
+				f.arrivalMin = dbUsers.getInt("arrivalMin");
+				f.arrivalDate = dbUsers.getDate("arrivalDate");
+				f.arrivalCity = dbUsers.getString("arrivalCity");
+				f.arrivalState = dbUsers.getString("arrivalState");
+				f.numSeatsBooked = dbUsers.getInt("numSeatsBooked");
+				f.numPassengersOnBoard = dbUsers.getInt("numPassengersOnBoard");
+
+			}
+		}catch(SQLException se){
+			se.printStackTrace();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			try{
+				if(stmt!=null)
+					stmt.close();
+			}catch(SQLException se2){
+			}
+			try{
+				if(conn!=null)
+					conn.close();
+			}catch(SQLException se){
+				se.printStackTrace();
+			}
+		}
+		return f;
+	}
+	
+	
 	public static ArrayList<String> getListOfFlights(){
 		
 		int flightNumb;
