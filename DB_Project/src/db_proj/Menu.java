@@ -1,6 +1,7 @@
 package db_proj;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menu
@@ -84,8 +85,17 @@ public class Menu
 			if(input.equals("1")){
 				/*	Need to write code to search given the SSN given SqlCommands info
 			   	 *
-				 */
+				 */			
+				
 				System.out.println("You picked 1");
+				
+				// Request SSN
+				System.out.print("Enter Social Security Number: ### only");
+				int ssnIn = Integer.parseInt(sc.nextLine());
+				
+				//Search for SSN in Table
+
+				
 			}
 			else if(input.equals("2")){
 				/*	Need to access SqlCommands.java function that will find all first/last names and ssn's
