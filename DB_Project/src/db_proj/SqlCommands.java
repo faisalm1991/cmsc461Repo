@@ -367,6 +367,47 @@ public class SqlCommands {
 		
 	}
 	
+	public static void removePassenger(Passenger p) throws SQLException{
+		
+		Connection dbConnection = null;
+		PreparedStatement stmt = null;
+		
+		String insertTableSQL = "DELETE FROM PASSENGER WHERE ssn = " 
+		+ "'" + p.ssn + "'";
+		
+		String updateTableSQL = "UPDATE FLIGHT SET numPassengersOnBoard = numPassengersOnBoard - 1 "
+				+ "WHERE flightNum = " + "'" + p.flightNum + "'";
+		
+		try {
+			dbConnection = DriverManager.getConnection(DB_URL, USER, PASS);
+			stmt = dbConnection.prepareStatement(insertTableSQL);
+			
+			stmt.executeUpdate();
+
+			System.out.println("Record was removed from PASSENGER table!");
+			
+			stmt = dbConnection.prepareStatement(updateTableSQL);
+			
+			stmt.executeUpdate();
+
+			System.out.println("FLIGHT table was updated!");
+
+		} catch (SQLException e) {
+
+			System.out.println(e.getMessage());
+
+		} finally {
+
+			if (stmt != null) {
+				stmt.close();
+			}
+
+			if (dbConnection != null) {
+				dbConnection.close();
+			}
+		}
+		
+	}
 	
 	
 	public static void addFlight(Flight f) throws SQLException{
@@ -477,6 +518,48 @@ public class SqlCommands {
 			}
 		}
 	}
+	
+	public static void removeFlight(int fNum) throws SQLException{
+		
+		Connection dbConnection = null;
+		PreparedStatement stmt = null;
+		
+		String insertTableSQL = "DELETE FROM FLIGHT WHERE flightNum = " 
+		+ "'" + fNum + "'";
+		
+		String secondTableSQL = "UPDATE PASSENGER SET flightNum = 0 "
+				+ "WHERE flightNum = " + "'" + fNum + "'";
+		
+		try {
+			dbConnection = DriverManager.getConnection(DB_URL, USER, PASS);
+			stmt = dbConnection.prepareStatement(insertTableSQL);
+		
+			stmt.executeUpdate();
+
+			System.out.println("Record was removed from FLIGHT table!");
+			
+			stmt = dbConnection.prepareStatement(secondTableSQL);
+			
+			stmt.executeUpdate();
+
+			System.out.println("PASSENGER table was updated!");
+
+		} catch (SQLException e) {
+
+			System.out.println(e.getMessage());
+
+		} finally {
+
+			if (stmt != null) {
+				stmt.close();
+			}
+
+			if (dbConnection != null) {
+				dbConnection.close();
+			}
+		}
+		
+	}
 
 
 	public static void main(String[] args){
@@ -513,7 +596,7 @@ public class SqlCommands {
 	
 		p.zip = 20743;
 		
-		p.telNum = "2404604365";
+		p.telNum = "3014124031";
 	
 		p.email = "hegray1@umbc.edu";
 	
@@ -532,14 +615,15 @@ public class SqlCommands {
 		p.flightClass = "Economy";
 	
 		p.amountPaid = 5000.00;
-		/*
+		
 		try {
-			addPassenger(p);
+			updatePassenger(p, 123454444);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		*/
+	
+		
 		
 	}
 
