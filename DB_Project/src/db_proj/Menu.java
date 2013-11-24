@@ -40,7 +40,7 @@ public class Menu
 		p.email = sc.nextLine();
 		System.out.print("Flight Number: ");
 		p.flightNum = sc.nextLine();
-		System.out.print("Flight Date: (XX/XX/XXXX)");
+		System.out.print("Flight Date: (XXXX/XX/XX) (year,mon,day)");
 		input = sc.nextLine();
 		String[] date = input.split("/");
 		Date fDate = new Date(Integer.parseInt(date[0]), Integer.parseInt(date[1]), Integer.parseInt(date[2]));

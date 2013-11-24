@@ -44,7 +44,7 @@ public class Passenger {
 		s += "Phone Number:             " + this.telNum + "\n";
 		s += "Email:                    " + this.email + "\n";
 		s += "Flight Number:            " + this.flightNum + "\n";
-		s += "Flight Date:              " + this.flightDate + "\n";
+		s += "Flight Date:              " + ((this.flightDate.getYear()) + "-" + (this.flightDate.getMonth())+"-"+ (this.flightDate.getDay())+ "\n");
 		s += "Reservation Status:       " + this.reservationStat + "\n";
 		s += "Baggage Information:      " + this.baggageInfo + "\n";
 		s += "Seat Number:              " + this.seatNum + "\n";
