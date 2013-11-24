@@ -216,6 +216,125 @@ public class SqlCommands {
 	}
 	
 	
+	public static void addPassenger(Passenger p) throws SQLException {
+		Connection dbConnection = null;
+		PreparedStatement preparedStatement = null;
+			
+			String insertTableSQL = "INSERT INTO PASSENGER"
+					+ "(firstName, lastName, ssn, age, street, aptNum, city, "
+					+ "state, zip, telNum,  email, flightNum, flightDate, "
+					+ "reservationStat, baggageInfo, seatNum, flightClass, amountPaid) VALUES"
+					+ "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	
+			
+			try {
+				
+				dbConnection = DriverManager.getConnection(DB_URL, USER, PASS);
+				preparedStatement = dbConnection.prepareStatement(insertTableSQL);
+	 
+				preparedStatement.setString(1, p.firstName);
+				preparedStatement.setString(2, p.lastName);
+				preparedStatement.setInt(3, p.ssn);
+				preparedStatement.setInt(4, p.age);
+				preparedStatement.setString(5, p.street);
+				preparedStatement.setString(6, p.aptNum);
+				preparedStatement.setString(7, p.city);
+				preparedStatement.setString(8, p.state);
+				preparedStatement.setInt(9, p.zip);
+				preparedStatement.setString(10, p.telNum);
+				preparedStatement.setString(11, p.email);
+				preparedStatement.setString(12, p.flightNum);
+				preparedStatement.setDate(13, p.flightDate);
+				preparedStatement.setString(14, p.reservationStat);
+				preparedStatement.setString(15, p.baggageInfo);
+				preparedStatement.setString(16, p.seatNum);
+				preparedStatement.setString(17, p.flightClass);
+				preparedStatement.setDouble(18, p.amountPaid);
+				
+				// execute insert SQL stetement
+				preparedStatement.executeUpdate();
+	 
+				System.out.println("Record is inserted into PASSENGER table!");
+			
+			} catch (SQLException e) {
+				
+				System.out.println(e.getMessage());
+		
+			} finally {
+				
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				}
+	 
+				if (dbConnection != null) {
+					dbConnection.close();
+				}
+				
+			}
+		
+	}
+	
+	
+	public static void updatePassenger(Passenger p, int sNum) throws SQLException {
+		Connection dbConnection = null;
+		PreparedStatement preparedStatement = null;
+		
+		String insertTableSQL = "UPDATE PASSENGER"
+					+ "SET firstName = ?, lastName = ?, ssn = ?, age = ?, street = ?, aptNum = ?, city = ?, "
+					+ "state = ?, zip = ?, telNum = ?,  email = ?, flightNum = ?, flightDate = ?, "
+					+ "reservationStat = ?, baggageInfo = ?, seatNum = ?, flightClass = ?, amountPaid = ?"
+					+ "WHERE ssn = ?";
+	
+			
+			try {
+				
+				dbConnection = DriverManager.getConnection(DB_URL, USER, PASS);
+				preparedStatement = dbConnection.prepareStatement(insertTableSQL);
+	 
+				preparedStatement.setString(1, p.firstName);
+				preparedStatement.setString(2, p.lastName);
+				preparedStatement.setInt(3, p.ssn);
+				preparedStatement.setInt(4, p.age);
+				preparedStatement.setString(5, p.street);
+				preparedStatement.setString(6, p.aptNum);
+				preparedStatement.setString(7, p.city);
+				preparedStatement.setString(8, p.state);
+				preparedStatement.setInt(9, p.zip);
+				preparedStatement.setString(10, p.telNum);
+				preparedStatement.setString(11, p.email);
+				preparedStatement.setString(12, p.flightNum);
+				preparedStatement.setDate(13, p.flightDate);
+				preparedStatement.setString(14, p.reservationStat);
+				preparedStatement.setString(15, p.baggageInfo);
+				preparedStatement.setString(16, p.seatNum);
+				preparedStatement.setString(17, p.flightClass);
+				preparedStatement.setDouble(18, p.amountPaid);
+				preparedStatement.setInt(19, sNum);
+				
+				
+				// execute insert SQL stetement
+				preparedStatement.executeUpdate();
+	 
+				System.out.println("Record is inserted into PASSENGER table!");
+			
+			} catch (SQLException e) {
+				
+				System.out.println(e.getMessage());
+		
+			} finally {
+				
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				}
+	 
+				if (dbConnection != null) {
+					dbConnection.close();
+				}
+				
+			}
+		
+	}
+	
 
 
 	public static void main(String[] args){
