@@ -4,33 +4,37 @@ import java.util.ArrayList;
 
 public class SqlCommands {
 	
-	static final String JDBC_DRIVER = "oracle.jdbc.driver.OracleDrive";  
+	static final String JDBC_DRIVER = "oracle.jdbc.driver.OracleDriver";  
 	static final String DB_URL = "jdbc:oracle:thin:@oracle2.gl.umbc.edu:1521:GL";
 	static final String USER = "cgadwa1"; //Please add your User ID for your Oracle Account
 	static final String PASS = "babylips";  //Please add your Oracle Password
 
-	public static String signIn(String username, String password){
+	public static boolean signIn(String username, String password){
 		
 		String uName = "";
+		String pass = "";
 		Connection conn = null;
 		Statement stmt = null;
+		boolean allowed = false;
 		try
 		{
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			System.out.println("Connecting to database...");
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
-			System.out.println("Executing...");
 			stmt = conn.createStatement();
-			String sql = "select username from users where username = '" + username + "'";
-			System.out.println(sql);
+			String sql = "select username, password from users";
+			
 			ResultSet dbUsers = stmt.executeQuery(sql);
 			
-				dbUsers.next();
-				System.out.println("boo");
-				uName = dbUsers.getString("username");
+				while(dbUsers.next()){
 				
+				uName = dbUsers.getString("username");
+				pass = dbUsers.getString("password");
+				if(username.equals(uName) && password.equals(pass))
+					allowed = true;
+				}
 
-			System.out.println(uName);
+			
 		}catch(SQLException se){
 	   		se.printStackTrace();
 	   	}catch(Exception e){
@@ -49,7 +53,7 @@ public class SqlCommands {
 		   	}
 	   	}
 		
-		return uName;
+		return allowed;
 	}
 	
 	public static ArrayList<String> getListOfPassengers(int fNum){
@@ -217,61 +221,90 @@ public class SqlCommands {
 	
 	
 	public static void addPassenger(Passenger p) throws SQLException {
+		 
 		Connection dbConnection = null;
 		PreparedStatement preparedStatement = null;
-			
-			String insertTableSQL = "INSERT INTO PASSENGER"
-					+ "(firstName, lastName, ssn, age, street, aptNum, city, "
-					+ "state, zip, telNum,  email, flightNum, flightDate, "
-					+ "reservationStat, baggageInfo, seatNum, flightClass, amountPaid) VALUES"
-					+ "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-	
-			
-			try {
-				
-				dbConnection = DriverManager.getConnection(DB_URL, USER, PASS);
-				preparedStatement = dbConnection.prepareStatement(insertTableSQL);
-	 
-				preparedStatement.setString(1, p.firstName);
-				preparedStatement.setString(2, p.lastName);
-				preparedStatement.setInt(3, p.ssn);
-				preparedStatement.setInt(4, p.age);
-				preparedStatement.setString(5, p.street);
-				preparedStatement.setString(6, p.aptNum);
-				preparedStatement.setString(7, p.city);
-				preparedStatement.setString(8, p.state);
-				preparedStatement.setInt(9, p.zip);
-				preparedStatement.setString(10, p.telNum);
-				preparedStatement.setString(11, p.email);
-				preparedStatement.setString(12, p.flightNum);
-				preparedStatement.setDate(13, p.flightDate);
-				preparedStatement.setString(14, p.reservationStat);
-				preparedStatement.setString(15, p.baggageInfo);
-				preparedStatement.setString(16, p.seatNum);
-				preparedStatement.setString(17, p.flightClass);
-				preparedStatement.setDouble(18, p.amountPaid);
-				
-				// execute insert SQL stetement
-				preparedStatement.executeUpdate();
-	 
-				System.out.println("Record is inserted into PASSENGER table!");
-			
-			} catch (SQLException e) {
-				
-				System.out.println(e.getMessage());
-		
-			} finally {
-				
-				if (preparedStatement != null) {
-					preparedStatement.close();
-				}
-	 
-				if (dbConnection != null) {
-					dbConnection.close();
-				}
-				
+ 
+		String insertTableSQL = "INSERT INTO PASSENGER"
+				+ "(firstName, lastName, ssn, age, street, aptNum, city, "
+				+ "state, zip, telNum,  email, flightNum, flightDate, "
+				+ "reservationStat, baggageInfo, seatNum, flightClass, amountPaid) VALUES"
+				+ "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+ 
+		try {
+			dbConnection = getDBConnection();
+			preparedStatement = dbConnection.prepareStatement(insertTableSQL);
+ 
+			preparedStatement.setString(1, p.firstName);
+			preparedStatement.setString(2, p.lastName);
+			preparedStatement.setInt(3, p.ssn);
+			preparedStatement.setInt(4, p.age);
+			preparedStatement.setString(5, p.street);
+			preparedStatement.setString(6, p.aptNum);
+			preparedStatement.setString(7, p.city);
+			preparedStatement.setString(8, p.state);
+			preparedStatement.setInt(9, p.zip);
+			preparedStatement.setString(10, p.telNum);
+			preparedStatement.setString(11, p.email);
+			preparedStatement.setString(12, p.flightNum);
+			preparedStatement.setDate(13, p.flightDate);
+			preparedStatement.setString(14, p.reservationStat);
+			preparedStatement.setString(15, p.baggageInfo);
+			preparedStatement.setString(16, p.seatNum);
+			preparedStatement.setString(17, p.flightClass);
+			preparedStatement.setDouble(18, p.amountPaid);
+ 
+			// execute insert SQL stetement
+			preparedStatement.executeUpdate();
+ 
+			System.out.println("Record is inserted into DBUSER table!");
+ 
+		} catch (SQLException e) {
+ 
+			System.out.println(e.getMessage());
+ 
+		} finally {
+ 
+			if (preparedStatement != null) {
+				preparedStatement.close();
 			}
-		
+ 
+			if (dbConnection != null) {
+				dbConnection.close();
+			}
+ 
+		}
+ 
+	}
+ 
+	public static Connection getDBConnection() {
+ 
+		Connection dbConnection = null;
+ 
+		try {
+ 
+			Class.forName(JDBC_DRIVER);
+ 
+		} catch (ClassNotFoundException e) {
+ 
+			System.out.println(e.getMessage());
+ 
+		}
+ 
+		try {
+ 
+			dbConnection = DriverManager.getConnection(
+                            DB_URL, USER, PASS);
+			return dbConnection;
+ 
+		} catch (SQLException e) {
+ 
+			System.out.println(e.getMessage());
+ 
+		}
+ 
+		return dbConnection;
+ 
 	}
 	
 	
@@ -283,12 +316,12 @@ public class SqlCommands {
 					+ "SET firstName = ?, lastName = ?, ssn = ?, age = ?, street = ?, aptNum = ?, city = ?, "
 					+ "state = ?, zip = ?, telNum = ?,  email = ?, flightNum = ?, flightDate = ?, "
 					+ "reservationStat = ?, baggageInfo = ?, seatNum = ?, flightClass = ?, amountPaid = ?"
-					+ "WHERE ssn = ?";
+					+ "WHERE ssn = " + "'" + sNum + "'";
 	
 			
 			try {
 				
-				dbConnection = DriverManager.getConnection(DB_URL, USER, PASS);
+				dbConnection = getDBConnection();
 				preparedStatement = dbConnection.prepareStatement(insertTableSQL);
 	 
 				preparedStatement.setString(1, p.firstName);
@@ -309,7 +342,6 @@ public class SqlCommands {
 				preparedStatement.setString(16, p.seatNum);
 				preparedStatement.setString(17, p.flightClass);
 				preparedStatement.setDouble(18, p.amountPaid);
-				preparedStatement.setInt(19, sNum);
 				
 				
 				// execute insert SQL stetement
@@ -453,8 +485,61 @@ public class SqlCommands {
 			for(String s : list){
 				System.out.println(s);
 			}
-	*/
-		System.out.println(getPassenger(123456789));
+	*/	
+		System.out.println("Signing in...");
+		boolean allowed = signIn("admin","admin1234");
+		if(allowed)
+			System.out.println("Access Granted");
+		
+		System.out.println(getPassenger(123454444));
+		
+		Passenger p = new Passenger();
+		
+		p.firstName = "Heidi";
+		
+		p.lastName = "Gray";
+		
+		p.ssn = 123454444;
+		
+		p.age = 21;
+		
+		p.street = "6302 Capon Street";
+		
+		p.aptNum = "N/A";
+		
+		p.city = "Seat Pleasant";
+		
+		p.state = "MD";
+	
+		p.zip = 20743;
+		
+		p.telNum = "2404604365";
+	
+		p.email = "hegray1@umbc.edu";
+	
+		p.flightNum = "12345";
+		
+		Date fDate = new Date(113, 10, 23);
+		p.flightDate = fDate;		   
+		//p.flightDate = sc.nextLine();
+
+		p.reservationStat = "Confirmed";
+	
+		p.baggageInfo = "3";
+
+		p.seatNum = "13A";
+	
+		p.flightClass = "Economy";
+	
+		p.amountPaid = 5000.00;
+		/*
+		try {
+			addPassenger(p);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		*/
 		
 	}
 
