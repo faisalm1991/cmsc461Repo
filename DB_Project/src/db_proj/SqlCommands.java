@@ -335,6 +335,116 @@ public class SqlCommands {
 		
 	}
 	
+	
+	
+	public static void addFlight(Flight f) throws SQLException{
+
+		Connection dbConnection = null;
+		PreparedStatement stmt = null;
+
+		String insertTableSQL = "INSERT INTO FLIGHT"
+				+ "(flightNum, flightDate, aircraftType, sourceCity, sourceState, depHour, depMin,"
+				+ " depDate, depCity, depState, arrivalHour, arrivalMin, arrivalDate, arrivalCity,"
+				+ " arrivalState, numSeatsBooked, numPassengersOnBoard) values"
+				+ "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+
+		try {
+			dbConnection = DriverManager.getConnection(DB_URL, USER, PASS);
+			stmt = dbConnection.prepareStatement(insertTableSQL);
+
+			stmt.setInt(1, f.flightNum);
+			stmt.setDate(2, f.flightDate);
+			stmt.setString(3, f.aircraftType);
+			stmt.setString(4, f.sourceCity);
+			stmt.setString(5, f.sourceState);
+			stmt.setInt(6, f.depHour);
+			stmt.setInt(7, f.depMin);
+			stmt.setDate(8, f.depDate);
+			stmt.setString(9, f.depCity);
+			stmt.setString(10, f.depState);
+			stmt.setInt(11, f.arrivalHour);
+			stmt.setInt(12, f.arrivalHour);
+			stmt.setDate(13, f.arrivalDate);
+			stmt.setString(14, f.arrivalCity);
+			stmt.setString(15, f.arrivalState);
+			stmt.setInt(16, f.numSeatsBooked);
+			stmt.setInt(17, f.numPassengersOnBoard);
+
+			stmt.executeUpdate();
+
+			System.out.println("Record is inserted into FLIGHT table!");
+
+		} catch (SQLException e) {
+
+			System.out.println(e.getMessage());
+
+		} finally {
+
+			if (stmt != null) {
+				stmt.close();
+			}
+
+			if (dbConnection != null) {
+				dbConnection.close();
+			}
+		}
+	}
+	
+	
+	
+	
+	public static void updateFlight(Flight f) throws SQLException{
+
+		Connection dbConnection = null;
+		PreparedStatement stmt = null;
+
+		String insertTableSQL = "UPDATE FLIGHT SET flightNum = ?, flightDate = ?, aircraftType = ?, "
+				+ "sourceCity = ?, sourceState = ?, depHour = ?, depMin = ?, depDate = ?, depCity = ?, "
+				+ "depState = ?, arrivalHour = ?, arrivalMin = ?, arrivalDate = ?, arrivalCity = ?, "
+				+ "arrivalState = ?, numSeatsBooked = ?, numPassengersOnBoard = ?"
+				+ " WHERE flightNum = ?";		
+		try {
+			dbConnection = DriverManager.getConnection(DB_URL, USER, PASS);
+			stmt = dbConnection.prepareStatement(insertTableSQL);
+
+			stmt.setInt(1, f.flightNum);
+			stmt.setDate(2, f.flightDate);
+			stmt.setString(3, f.aircraftType);
+			stmt.setString(4, f.sourceCity);
+			stmt.setString(5, f.sourceState);
+			stmt.setInt(6, f.depHour);
+			stmt.setInt(7, f.depMin);
+			stmt.setDate(8, f.depDate);
+			stmt.setString(9, f.depCity);
+			stmt.setString(10, f.depState);
+			stmt.setInt(11, f.arrivalHour);
+			stmt.setInt(12, f.arrivalHour);
+			stmt.setDate(13, f.arrivalDate);
+			stmt.setString(14, f.arrivalCity);
+			stmt.setString(15, f.arrivalState);
+			stmt.setInt(16, f.numSeatsBooked);
+			stmt.setInt(17, f.numPassengersOnBoard);
+
+			stmt.executeUpdate();
+
+			System.out.println("Record is inserted into FLIGHT table!");
+
+		} catch (SQLException e) {
+
+			System.out.println(e.getMessage());
+
+		} finally {
+
+			if (stmt != null) {
+				stmt.close();
+			}
+
+			if (dbConnection != null) {
+				dbConnection.close();
+			}
+		}
+	}
 
 
 	public static void main(String[] args){
