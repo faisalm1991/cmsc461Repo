@@ -1,11 +1,11 @@
-//package db_proj;
+package db_proj;
 
 import java.sql.Date;
 
 
 public class Flight {
 	
-	int flightNum;
+	int flightNum = 0;
 	Date flightDate;
 	String aircraftType;
 	String sourceCity;
