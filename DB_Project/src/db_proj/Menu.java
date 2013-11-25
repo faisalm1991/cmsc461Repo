@@ -1,4 +1,4 @@
-package db_proj;
+//package db_proj;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -69,16 +69,14 @@ public class Menu
 				e.printStackTrace();
 				System.out.println("Passenger could not be added.");
 			}
-		else if(input.equals("2"))
+		else if(input.equals("2")){
 			System.out.println("Edit");
-
-
-
-
+			passengerMenu(p,p.ssn);
+		}
 	}
 
 	public static void passengerMenu(Passenger p, int ssn){
-
+		
 		System.out.println("Please select what you would like to edit");
 		System.out.println("1 - First Name");
 		System.out.println("2 - Last Name ");
@@ -142,10 +140,11 @@ public class Menu
 			p.flightNum  = change;
 		}
 		else if(choice.equals("13")){
+			   
 			
-			String[] date = input.split("/");
-			Date fDate = new Date(Integer.parseInt(date[0]), Integer.parseInt(date[1]), Integer.parseInt(date[2]));
-			p.flightDate = fDate;		   
+			String[] date = change.split("/");
+			Date fDate = new Date(Integer.parseInt(date[0]) - 1900, Integer.parseInt(date[1]) -1, Integer.parseInt(date[2]));
+			p.flightDate = fDate;
 			
 		}
 		else if(choice.equals("14")){
@@ -167,28 +166,43 @@ public class Menu
 			p.amountPaid = Integer.parseInt(change);
 				
 		}
-		try 
-		{
-			SqlCommands.updatePassenger(p, ssn);
+		else{
+			System.out.println("Invalid option ");
 		}
-		catch(Exception e){
-			System.out.println(e);
+		
+		System.out.println("\f");
+		System.out.println("Summary");
+		System.out.println("-----------------");
+		System.out.println(p);
+		System.out.println("1 - Save\n2 - Edit");
+		input = sc.nextLine();
+		if(input.equals("1"))
+			try {
+				SqlCommands.updatePassenger(p,ssn);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.out.println("Passenger could not be updated.");
+			}
+		else if(input.equals("2")){
+			System.out.println("Edit");
+			passengerMenu(p, p.ssn);
 		}
-		System.out.println(SqlCommands.getPassenger(ssn));
 	}
 	
 	public static void updatePassenger(){
-		
+		boolean cond = false;
 		do{
 			
-			
+			if(cond == false){
 			//System.out.print("\n\f");
 			System.out.println("Please select the way you want to select the passenger");
 			System.out.println("1 - Search for specific passenger's SSN.");
 			System.out.println("2 - Display list of all passengers' first/last name and SSN's from a flight number");
 			System.out.println("0 - Go back to main menu.");
 			input = sc.nextLine();
-
+			}
+			
 			if(input.equals("1")){
 				/*	Need to write code to search given the SSN given SqlCommands info
 			   	 *
@@ -213,7 +227,7 @@ public class Menu
 					
 				}
 				passengerMenu(p, ssnIn);
-				
+				cond = false;
 			}
 			else if(input.equals("2")){
 				/*	Need to access SqlCommands.java function that will find all first/last names and ssn's
@@ -224,19 +238,28 @@ public class Menu
 				 */
 				System.out.println("You picked 2");
 				
-				System.out.print("Enter in flight number: ### only");
+				System.out.print("Enter in flight number: ### only \n");
 				int fNum = Integer.parseInt(sc.nextLine());
 			
+				
 				ArrayList<String> list = SqlCommands.getListOfPassengers(fNum);
+				
+				if (list == null){
+					System.out.println("Could not find flight number.");
+				}
+				else {
 				for(String s : list){
 					System.out.println(s);
+					}
+					input= "1";
+					cond = true;
 				}
-				input= "1";
+				
 			}
 		}
 		while(!input.equals("0"));
 		System.out.println("Back to main menu");
-
+		fakeMain();
 	}
 
 	public static void addFlight(){
@@ -344,20 +367,13 @@ public class Menu
 		}
 		while(!input.equals("0"));
 		System.out.println("Back to main menu");
-
+		fakeMain();
 	}
 
-
-
-
-
-	public static void main(String[] args){
-
-		updatePassenger();
-/*
+	public static void fakeMain(){
+		
 		do{
-			System.out.println("\f");
-			System.out.println("Welcome to Flight Manager Beta");
+		//	System.out.println("\f");
 			System.out.println("1 - Add a new passenger.");
 			System.out.println("2 - Edit existing passenger information.");
 			System.out.println("3 - Add a new flight.");
@@ -376,7 +392,16 @@ public class Menu
 		}
 		while(!input.equals("0"));
 		System.out.println("Program ended.");
-*/
+
+	}
+
+
+
+	public static void main(String[] args){
+		System.out.println("\f");
+		System.out.println("Welcome to Flight Manager Beta");
+		
+		fakeMain();
 	}
 
 }
