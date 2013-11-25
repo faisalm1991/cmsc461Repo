@@ -1,5 +1,7 @@
 //package db_proj;
 import java.sql.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class SqlCommands {
@@ -621,6 +623,43 @@ public class SqlCommands {
 		
 	}
 
+	public static String getStats(Flight f){
+	
+		String passengers = " ";
+		String differenceStat= " ";
+		String stopsStat = " ";
+		
+		//GETS LIFT OF PASSENGERS
+		ArrayList<String> list = getListOfPassengers(f.flightNum);;
+		for(String s : list){
+			passengers += s;
+		}
+		
+		//GETS DURATION OF FLIGHT
+		String time1 = f.depHour + ":" + f.depMin + ":00";
+		String time2 = f.arrivalHour + ":" + f.arrivalMin + ":00";
+		try {
+				SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+				java.util.Date date1 = format.parse(time1);
+				java.util.Date date2 = format.parse(time2);
+				long difference = date2.getTime() - date1.getTime(); 
+				
+				System.out.println(time1);
+				System.out.println(time2);
+
+				differenceStat = "\nThe total amount taken: " + difference;
+				
+		}catch (ParseException e){
+			System.out.println("time is wrong");
+		}
+		
+		//GETS HOW MANY STOPS
+		String[] stops = f.intermediateStops.split(",");
+		stopsStat += "The total amount of stops " + stops.length;
+		
+		return passengers + differenceStat ;
+		
+	}
 
 	public static void main(String[] args){
 	/*
@@ -629,6 +668,8 @@ public class SqlCommands {
 				System.out.println(s);
 			}
 	*/	
+		
+	
 		System.out.println("Signing in...");
 		boolean allowed = signIn("admin","admin1234");
 		if(allowed)
