@@ -224,9 +224,9 @@ public class Menu
 				}else{
 					System.out.println("\fYou've selected the following passenger: ");
 					System.out.println(p);
-					
+					passengerMenu(p, ssnIn);
 				}
-				passengerMenu(p, ssnIn);
+				
 				cond = false;
 			}
 			else if(input.equals("2")){
@@ -335,25 +335,156 @@ public class Menu
 
 	}
 
+	public static void flightMenu(Flight f){
+		
+		System.out.println("Please select one of the following: ");
+		System.out.println("1 -  Flight Number ");
+		System.out.println("2 -  Flight Date ");
+		System.out.println("3 -  Aircraft type");
+		System.out.println("4 -  Source city ");
+		System.out.println("5 -  Source State " );
+		System.out.println("6 -  Departure Hour ");
+		System.out.println("7 -  Departure Minute ");
+		System.out.println("8 -  Departure Date");
+		System.out.println("9 -  Departure City");
+		System.out.println("10 - Depature State" );
+		System.out.println("11 - Arrival Hour ");
+		System.out.println("12 - Arrival Minute  ");
+		System.out.println("13 - Arrival Date");
+		System.out.println("14 - Arrival City");
+		System.out.println("15 - Arrival State" );
+		System.out.println("16 - Number of Seats Booked ");
+		System.out.println("17 - Number Passengers on Board");
+		
+String choice = sc.nextLine();
+		
+		System.out.println("Enter in what you would like to change about choice " + choice);
+		String change = sc.nextLine();
+
+		if(choice.equals("1")){
+			f.flightNum = Integer.parseInt(change);
+		}
+		else if(choice.equals("2")){
+
+			String[] date = change.split("/");
+			Date fDate = new Date(Integer.parseInt(date[0]) - 1900, Integer.parseInt(date[1]) -1, Integer.parseInt(date[2]));
+			f.flightDate = fDate;
+
+		
+		}
+		else if(choice.equals("3")){
+			f.aircraftType = change;
+		}
+		else if(choice.equals("4")){
+			f.sourceCity = change;
+		}
+		else if(choice.equals("5")){
+			f.sourceState = change;
+		}
+		else if(choice.equals("6")){
+			f.depHour = Integer.parseInt(change);
+		}
+		else if(choice.equals("7")){
+			f.depMin = Integer.parseInt(change);
+		}
+		else if(choice.equals("8")){
+			
+			String[] date = change.split("/");
+			Date fDate = new Date(Integer.parseInt(date[0]) - 1900, Integer.parseInt(date[1]) -1, Integer.parseInt(date[2]));
+			f.depDate = fDate;
+		}
+		else if(choice.equals("9")){
+			f.depCity = change;
+				
+		}
+		else if(choice.equals("10")){
+			f.depState = change;
+		}
+		else if(choice.equals("11")){
+			f.arrivalHour = Integer.parseInt(change);
+		}
+		else if(choice.equals("12")){
+			f.arrivalMin  = Integer.parseInt(change);
+		}
+		else if(choice.equals("13")){
+			   
+			String[] date = change.split("/");
+			Date fDate = new Date(Integer.parseInt(date[0]) - 1900, Integer.parseInt(date[1]) -1, Integer.parseInt(date[2]));
+			f.arrivalDate = fDate;
+			
+		}
+		else if(choice.equals("14")){
+
+			f.arrivalCity = change;
+			
+		}
+		else if(choice.equals("15")){
+
+			f.arrivalState = change;											
+		}
+		else if(choice.equals("16")){
+			f.numSeatsBooked = Integer.parseInt(change);
+		}
+		else if(choice.equals("17")){
+			f.numPassengersOnBoard = Integer.parseInt(change);
+		}
+		
+		else{
+			System.out.println("Invalid option ");
+		}
+		
+		System.out.println("\f");
+		System.out.println("Summary");
+		System.out.println("-----------------");
+		System.out.println(f);
+		System.out.println("1 - Save\n2 - Edit");
+		input = sc.nextLine();
+		if(input.equals("1"))
+			try {
+				SqlCommands.updateFlight(f);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.out.println("Flight could not be updated.");
+			}
+		else if(input.equals("2")){
+			System.out.println("Edit");
+			flightMenu(f);
+		}
+		
+	}
 	
 
 	public static void updateFlight(){
-
+		boolean cond = false; 
 
 		do{
-			System.out.print("\n\f");
-			System.out.println("Please select the way you want to select your flight number");
-			System.out.println("1 - Search for specific flight number.");
-			System.out.println("2 - Display list of all flight numbers.");
-			System.out.println("0 - Go back to main menu.");
-			input = sc.nextLine();
-
+			if(cond == false){
+			//	System.out.print("\n\f");
+				System.out.println("Please select the way you want to select your flight number");
+				System.out.println("1 - Search for specific flight number.");
+				System.out.println("2 - Display list of all flight numbers.");
+				System.out.println("0 - Go back to main menu.");
+				input = sc.nextLine();
+			}
 			if(input.equals("1")){
-				/*	Need to write code to search given the number
-			   System.out.println("Enter Flight Number of the flight you wish to edit: ");
-			   int toEditFlightNum = Integer.parseInt(sc.nextLine());
-				 */
+				/*	Need to write code to search given the number */
 				System.out.println("You picked 1");
+				System.out.println("Enter Flight Number of the flight you wish to edit: ");
+				int toEditFlightNum = Integer.parseInt(sc.nextLine());
+				
+				Flight f = SqlCommands.getFlight(toEditFlightNum);
+				
+				if(f.flightNum == 0){
+					System.out.println("This flight does not exist");
+				}
+				else {
+					System.out.println("You've selected the following flight: \n");
+					System.out.println(f);
+					flightMenu(f);
+				}
+				cond = false;
+				
 			}
 			else if(input.equals("2")){
 				/*	Need to access SqlCommands.java function that will find all flight numbers
@@ -363,6 +494,16 @@ public class Menu
 				 * 
 				 */
 				System.out.println("You picked 2");
+				
+				ArrayList<String> list = SqlCommands.getListOfFlights();
+								
+				for(String s : list){
+					System.out.println(s);
+				}
+				
+				input = "1";
+				cond = true;
+				
 			}
 		}
 		while(!input.equals("0"));
