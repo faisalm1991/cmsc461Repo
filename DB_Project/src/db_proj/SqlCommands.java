@@ -1,4 +1,4 @@
-//package db_proj;
+package db_proj;
 import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -197,6 +197,7 @@ public class SqlCommands {
 				f.aircraftType = dbUsers.getString("aircraftType");
 				f.sourceCity = dbUsers.getString("sourceCity");
 				f.sourceState = dbUsers.getString("sourceState");
+				f.intermediateStops = dbUsers.getString("intermediateStops");
 				f.depHour = dbUsers.getInt("depHour");
 				f.depMin = dbUsers.getInt("depMin");
 				f.depDate = dbUsers.getDate("depDate");
@@ -478,10 +479,10 @@ public class SqlCommands {
 		PreparedStatement stmt = null;
 
 		String insertTableSQL = "INSERT INTO FLIGHT"
-				+ "(flightNum, flightDate, aircraftType, sourceCity, sourceState, depHour, depMin,"
+				+ "(flightNum, flightDate, aircraftType, sourceCity, sourceState, intermediateStops, depHour, depMin,"
 				+ " depDate, depCity, depState, arrivalHour, arrivalMin, arrivalDate, arrivalCity,"
 				+ " arrivalState, numSeatsBooked, numPassengersOnBoard) values"
-				+ "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				+ "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 
 		try {
@@ -493,18 +494,19 @@ public class SqlCommands {
 			stmt.setString(3, f.aircraftType);
 			stmt.setString(4, f.sourceCity);
 			stmt.setString(5, f.sourceState);
-			stmt.setInt(6, f.depHour);
-			stmt.setInt(7, f.depMin);
-			stmt.setDate(8, f.depDate);
-			stmt.setString(9, f.depCity);
-			stmt.setString(10, f.depState);
-			stmt.setInt(11, f.arrivalHour);
+			stmt.setString(6, f.intermediateStops);
+			stmt.setInt(7, f.depHour);
+			stmt.setInt(8, f.depMin);
+			stmt.setDate(9, f.depDate);
+			stmt.setString(10, f.depCity);
+			stmt.setString(11, f.depState);
 			stmt.setInt(12, f.arrivalHour);
-			stmt.setDate(13, f.arrivalDate);
-			stmt.setString(14, f.arrivalCity);
-			stmt.setString(15, f.arrivalState);
-			stmt.setInt(16, f.numSeatsBooked);
-			stmt.setInt(17, f.numPassengersOnBoard);
+			stmt.setInt(13, f.arrivalHour);
+			stmt.setDate(14, f.arrivalDate);
+			stmt.setString(15, f.arrivalCity);
+			stmt.setString(16, f.arrivalState);
+			stmt.setInt(17, f.numSeatsBooked);
+			stmt.setInt(18, f.numPassengersOnBoard);
 
 			stmt.executeUpdate();
 
@@ -675,55 +677,8 @@ public class SqlCommands {
 		if(allowed)
 			System.out.println("Access Granted");
 		
-		System.out.println(getPassenger(123454444));
 		
-		Passenger p = new Passenger();
-		
-		p.firstName = "Heidi";
-		
-		p.lastName = "Gray";
-		
-		p.ssn = 123454444;
-		
-		p.age = 21;
-		
-		p.street = "6302 Capon Street";
-		
-		p.aptNum = "N/A";
-		
-		p.city = "Seat Pleasant";
-		
-		p.state = "MD";
-	
-		p.zip = 20743;
-		
-		p.telNum = "3014124031";
-	
-		p.email = "hegray1@umbc.edu";
-	
-		p.flightNum = "12345";
-		
-		Date fDate = new Date(113, 10, 23);
-		p.flightDate = fDate;		   
-		//p.flightDate = sc.nextLine();
-
-		p.reservationStat = "Confirmed";
-	
-		p.baggageInfo = "3";
-
-		p.seatNum = "13A";
-	
-		p.flightClass = "Economy";
-	
-		p.amountPaid = 5000.00;
-		
-		try {
-			updatePassenger(p, 123454444);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	
+		System.out.println(getPassenger(123456789));
 		
 		
 	}
