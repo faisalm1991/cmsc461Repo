@@ -1,4 +1,4 @@
-//package db_proj;
+package db_proj;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -43,7 +43,7 @@ public class Menu
 		System.out.print("Flight Date: (XXXX/XX/XX) (year,mon,day)");
 		input = sc.nextLine();
 		String[] date = input.split("/");
-		Date fDate = new Date(Integer.parseInt(date[0]) - 1900, Integer.parseInt(date[1]) -1, Integer.parseInt(date[2]));
+		Date fDate = new Date(Integer.parseInt(date[0])-1900 , Integer.parseInt(date[1]) -1, Integer.parseInt(date[2]));
 		p.flightDate = fDate;		   
 		System.out.print("Reservation Status: ");
 		p.reservationStat = sc.nextLine();
