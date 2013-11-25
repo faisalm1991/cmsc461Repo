@@ -1,4 +1,4 @@
-//package db_proj;
+package db_proj;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -271,7 +271,6 @@ public class Menu
 		String[] date = input.split("/");
 		Date fDate = new Date(Integer.parseInt(date[0]) - 1900, Integer.parseInt(date[1]) -1, Integer.parseInt(date[2]));
 		f.flightDate = fDate;
-
 		System.out.print("Aircraft Type: ");
 		f.aircraftType = sc.nextLine();
 		System.out.print("Source City: ");
@@ -283,7 +282,6 @@ public class Menu
 		System.out.print("departure Minute: ");
 		f.depMin = Integer.parseInt(sc.nextLine());
 		System.out.print("departure Date (XX/XX/XXXX) : ");
-
 		input = sc.nextLine();
 		String[] ddate = input.split("/");
 
@@ -343,18 +341,19 @@ public class Menu
 		System.out.println("3 -  Aircraft type");
 		System.out.println("4 -  Source city ");
 		System.out.println("5 -  Source State " );
-		System.out.println("6 -  Departure Hour ");
-		System.out.println("7 -  Departure Minute ");
-		System.out.println("8 -  Departure Date");
-		System.out.println("9 -  Departure City");
-		System.out.println("10 - Depature State" );
-		System.out.println("11 - Arrival Hour ");
-		System.out.println("12 - Arrival Minute  ");
-		System.out.println("13 - Arrival Date");
-		System.out.println("14 - Arrival City");
-		System.out.println("15 - Arrival State" );
-		System.out.println("16 - Number of Seats Booked ");
-		System.out.println("17 - Number Passengers on Board");
+		System.out.println("6 -  Intermediate Stops " );
+		System.out.println("7 -  Departure Hour ");
+		System.out.println("8 -  Departure Minute ");
+		System.out.println("9 -  Departure Date");
+		System.out.println("10 - Departure City");
+		System.out.println("11 - Depature State" );
+		System.out.println("12 - Arrival Hour ");
+		System.out.println("13 - Arrival Minute  ");
+		System.out.println("14 - Arrival Date");
+		System.out.println("15 - Arrival City");
+		System.out.println("16 - Arrival State" );
+		System.out.println("17 - Number of Seats Booked ");
+		System.out.println("18 - Number Passengers on Board");
 		
 String choice = sc.nextLine();
 		
@@ -382,50 +381,53 @@ String choice = sc.nextLine();
 			f.sourceState = change;
 		}
 		else if(choice.equals("6")){
-			f.depHour = Integer.parseInt(change);
+			f.intermediateStops = change;
 		}
 		else if(choice.equals("7")){
-			f.depMin = Integer.parseInt(change);
+			f.depHour = Integer.parseInt(change);
 		}
 		else if(choice.equals("8")){
+			f.depMin = Integer.parseInt(change);
+		}
+		else if(choice.equals("9")){
 			
 			String[] date = change.split("/");
 			Date fDate = new Date(Integer.parseInt(date[0]) - 1900, Integer.parseInt(date[1]) -1, Integer.parseInt(date[2]));
 			f.depDate = fDate;
 		}
-		else if(choice.equals("9")){
+		else if(choice.equals("10")){
 			f.depCity = change;
 				
 		}
-		else if(choice.equals("10")){
+		else if(choice.equals("11")){
 			f.depState = change;
 		}
-		else if(choice.equals("11")){
+		else if(choice.equals("12")){
 			f.arrivalHour = Integer.parseInt(change);
 		}
-		else if(choice.equals("12")){
+		else if(choice.equals("13")){
 			f.arrivalMin  = Integer.parseInt(change);
 		}
-		else if(choice.equals("13")){
+		else if(choice.equals("14")){
 			   
 			String[] date = change.split("/");
 			Date fDate = new Date(Integer.parseInt(date[0]) - 1900, Integer.parseInt(date[1]) -1, Integer.parseInt(date[2]));
 			f.arrivalDate = fDate;
 			
 		}
-		else if(choice.equals("14")){
+		else if(choice.equals("15")){
 
 			f.arrivalCity = change;
 			
 		}
-		else if(choice.equals("15")){
+		else if(choice.equals("16")){
 
 			f.arrivalState = change;											
 		}
-		else if(choice.equals("16")){
+		else if(choice.equals("17")){
 			f.numSeatsBooked = Integer.parseInt(change);
 		}
-		else if(choice.equals("17")){
+		else if(choice.equals("18")){
 			f.numPassengersOnBoard = Integer.parseInt(change);
 		}
 		

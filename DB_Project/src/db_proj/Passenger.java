@@ -1,15 +1,13 @@
-//package db_proj;
+package db_proj;
 
 import java.sql.Date;
 import java.util.*;
 
 public class Passenger {
-// random text
-	//testing random text
-	//Faisal haha
+
 	public String firstName;
 	public String lastName;
-	public int ssn =0;
+	public int ssn = 0;
 	public int age;
 	public String street;
 	public String aptNum;

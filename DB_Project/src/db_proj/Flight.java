@@ -1,6 +1,7 @@
-//package db_proj;
+package db_proj;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 
 public class Flight {
@@ -10,6 +11,7 @@ public class Flight {
 	String aircraftType;
 	String sourceCity;
 	String sourceState;
+	String intermediateStops;
 	int depHour;
 	int depMin;
 	Date depDate;
@@ -35,6 +37,7 @@ public class Flight {
 		+ "\n" + "Aircraft Type:       " + this.aircraftType
 		+ "\n" + "Source City:         " + this.sourceCity
 		+ "\n" + "Source State:        " + this.sourceState
+		+ "\n" + "Intermediate Stops:  " + this.intermediateStops
 		+ "\n" + "Departure Hour:      " + this.depHour
 		+ "\n" + "Departure Minute:    " + this.depMin
 		+ "\n" + "Departure Date:      " + this.depDate
